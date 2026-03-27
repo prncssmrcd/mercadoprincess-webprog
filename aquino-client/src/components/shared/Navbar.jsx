@@ -6,13 +6,14 @@ const links = [
   { label: "About", to: "/about" },
   { label: "Articles", to: "/articles" },
 ];
-
+//   primary: "bg-zinc-900 text-zinc-50 hover:bg-zinc-700",
+//   secondary: "bg-zinc-50 text-zinc-900 hover:bg-zinc-200",
 const navLinkClassName = ({ isActive }) =>
   [
     "rounded-full border-2 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] transition",
     isActive
-      ? "border-orange-600 bg-orange-600 text-white"
-      : "border-transparent text-neutral-600 hover:border-orange-600 hover:bg-orange-50 hover:text-neutral-900",
+      ? "border-zinc-600 bg-zinc-900 text-white"
+      : "border-transparent text-neutral-600 hover:border-zinc-900 hover:bg-zinc-50 hover:text-neutral-900",
   ].join(" ");
 
 const NavBar = () => {
