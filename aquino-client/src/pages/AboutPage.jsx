@@ -1,5 +1,5 @@
-import Button from "../components/Button";
-import about from "../assets/about/about.png";
+import Button from '../components/Button';
+import about from '../assets/about/about.png';
 
 const AboutPage = () => {
   return (
@@ -48,10 +48,10 @@ const AboutPage = () => {
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { label: "Years", value: "6" },
-            { label: "Projects", value: "16" },
-            { label: "Clients", value: "21" },
-            { label: "Focus Areas", value: "8" },
+            { label: 'Years', value: '6' },
+            { label: 'Projects', value: '16' },
+            { label: 'Clients', value: '21' },
+            { label: 'Focus Areas', value: '8' },
           ].map((item) => (
             <div
               key={item.label}
@@ -82,16 +82,16 @@ const AboutPage = () => {
             <div className="mt-6 space-y-4">
               {[
                 {
-                  title: "Intro Block",
-                  desc: "A simple opening area for biography, role, or supporting information.",
+                  title: 'Intro Block',
+                  desc: 'A simple opening area for biography, role, or supporting information.',
                 },
                 {
-                  title: "Experience Block",
-                  desc: "Repeated section styling keeps the page readable and easy to extend.",
+                  title: 'Experience Block',
+                  desc: 'Repeated section styling keeps the page readable and easy to extend.',
                 },
                 {
-                  title: "Details Block",
-                  desc: "Another placeholder area for skills, notes, or references.",
+                  title: 'Details Block',
+                  desc: 'Another placeholder area for skills, notes, or references.',
                 },
               ].map((item, index) => (
                 <article
