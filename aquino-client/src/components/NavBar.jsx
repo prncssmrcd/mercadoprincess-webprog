@@ -1,20 +1,20 @@
-import { NavLink } from "react-router-dom";
-import orangeLogo from "../../assets/brand/orange.png";
+import { NavLink } from 'react-router-dom';
+import orangeLogo from '../assets/brand/orange.png';
 
 const links = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Articles", to: "/articles" },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Articles', to: '/articles' },
 ];
 //   primary: "bg-zinc-900 text-zinc-50 hover:bg-zinc-700",
 //   secondary: "bg-zinc-50 text-zinc-900 hover:bg-zinc-200",
 const navLinkClassName = ({ isActive }) =>
   [
-    "rounded-full border-2 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] transition",
+    'rounded-full border-2 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] transition',
     isActive
-      ? "border-zinc-600 bg-zinc-900 text-white"
-      : "border-transparent text-neutral-600 hover:border-zinc-900 hover:bg-zinc-50 hover:text-neutral-900",
-  ].join(" ");
+      ? 'border-zinc-600 bg-zinc-900 text-white'
+      : 'border-transparent text-neutral-600 hover:border-zinc-900 hover:bg-zinc-50 hover:text-neutral-900',
+  ].join(' ');
 
 const NavBar = () => {
   return (
@@ -41,7 +41,7 @@ const NavBar = () => {
             <NavLink
               key={link.to}
               to={link.to}
-              end={link.to === "/"}
+              end={link.to === '/'}
               className={navLinkClassName}
             >
               {link.label}
