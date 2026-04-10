@@ -3,28 +3,48 @@ import Button from './Button';
 
 const ArticleList = ({ articles }) => {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {articles.map((article, index) => (
         <article
           key={article.name}
-          className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4"
+          className="flex flex-col rounded-3xl border-2 border-neutral-900 bg-white p-5 transition-all duration-300 hover:bg-orange-50 hover:shadow-[8px_8px_0px_0px_rgba(24,24,27,1)]"
         >
-          <div className="flex aspect-4/3 items-center justify-center rounded-[1.25rem] bg-zinc-200">
-            <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
+          {/* Use article.imageUrl here to match your data file */}
+          <div className="relative aspect-4/3 w-full overflow-hidden rounded-[1.25rem] border-2 border-neutral-900 bg-orange-50">
+            {article.imageUrl ? (
+              <img
+                src={article.imageUrl}
+                alt={article.title}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <div className="h-12 w-12 border-2 border-dashed border-orange-200 bg-white/50" />
+              </div>
+            )}
           </div>
-          <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-            Article {String(index + 1).padStart(2, '0')}
-          </p>
-          <h3 className="mt-2 text-lg font-semibold text-zinc-900">
-            {article.title}
-          </h3>
 
-          <p className="mt-3 text-sm leading-6 text-zinc-600">
-            {article.content[0].substring(0, 150)}...
-          </p>
-          <Link to={`/articles/${article.name}`}>
-            <Button className="mt-4">Read More</Button>
-          </Link>
+          <div className="mt-5 flex flex-grow flex-col">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-neutral-400">
+              Article {String(index + 1).padStart(2, '0')}
+            </p>
+
+            <h3 className="mt-2 text-xl font-bold leading-tight text-neutral-900">
+              {article.title}
+            </h3>
+
+            <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-neutral-600">
+              {article.content[0]}
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <Link to={`/articles/${article.name}`} className="block w-full">
+              <Button variant="primary" className="w-full">
+                Read More
+              </Button>
+            </Link>
+          </div>
         </article>
       ))}
     </div>
