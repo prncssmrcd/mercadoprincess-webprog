@@ -40,6 +40,17 @@ const articles = [
     ],
   },
   {
+    name: 'react-component-lifecycle',
+    title: 'React Component Lifecycle',
+    imageUrl: img3,
+    content: [
+      'Class components have lifecycle methods: mounting, updating, unmounting.',
+      'Key methods include: componentDidMount, componentDidUpdate, componentWillUnmount.',
+      'Functional components use the useEffect hook to mimic lifecycle behavior.',
+      "Example:\nuseEffect(() => {\n console.log('Mounted');\n return () => console.log('Unmounted');\n}, []);",
+    ],
+  },
+  {
     name: 'react-routing-basics',
     title: 'React Router Basics',
     imageUrl: img4,
@@ -55,7 +66,7 @@ const articles = [
     title: 'Managing State in React',
     imageUrl: img5,
     content: [
-      'State allows components to keep track of dynamic data.',
+      'State allows components to keep track of dynamic data...',
       'useState hook lets functional components manage state.',
       'Example:\nconst [count, setCount] = useState(0);',
       'Updating state triggers a re-render with the new value.',
