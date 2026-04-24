@@ -26,6 +26,13 @@ function ArticleListPage() {
               key={article.name}
               className="rounded-[1.25rem] border border-orange-300 bg-orange-100/70 p-5"
             >
+              <div className="mb-4 overflow-hidden rounded-2xl border border-orange-300 bg-orange-50">
+                <img
+                  src={article.imageUrl}
+                  alt={article.title}
+                  className="h-48 w-full object-cover"
+                />
+              </div>
               <h2 className="text-xl font-semibold text-orange-950">
                 {article.title}
               </h2>

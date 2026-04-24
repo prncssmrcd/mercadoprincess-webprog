@@ -48,8 +48,12 @@ function ArticlePage() {
 
       <section className="rounded-3xl border-2 border-orange-900 bg-orange-50 px-5 py-8 sm:px-8 sm:py-10">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-8 flex aspect-4/3 items-center justify-center rounded-[1.25rem] border border-orange-300 bg-orange-100">
-            <div className="h-24 w-24 border border-orange-300 bg-orange-50" />
+          <div className="mb-8 overflow-hidden rounded-[1.25rem] border border-orange-300 bg-orange-100">
+            <img
+              src={article.imageUrl}
+              alt={article.title}
+              className="h-full w-full object-cover"
+            />
           </div>
 
           <div className="prose prose-sm max-w-none space-y-4 text-orange-900">
