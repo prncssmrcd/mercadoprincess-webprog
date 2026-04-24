@@ -1,7 +1,14 @@
+import img1 from './cards/1.png';
+import img2 from './cards/2.png';
+import img3 from './cards/3.png';
+import img4 from './cards/4.png';
+import img5 from './cards/5.png';
+
 const articles = [
   {
     name: 'react-props-and-styling', // String
     title: 'Understanding React Props and Styling', // String
+    imageUrl: img1,
     // List --> String
     content: [
       'Props (short for properties) allow you to pass data between components. They are read-only and essential for component reusability.',
@@ -13,6 +20,7 @@ const articles = [
   {
     name: 'react-functional-components',
     title: 'React Functional Components',
+    imageUrl: img2,
     content: [
       'Functional components are simple JavaScript functions that return JSX.',
       'They are stateless by default but can use hooks like useState and useEffect.',
@@ -23,6 +31,7 @@ const articles = [
   {
     name: 'react-component-lifecycle',
     title: 'React Component Lifecycle',
+    imageUrl: img3,
     content: [
       'Class components have lifecycle methods: mounting, updating, unmounting.',
       'Key methods include: componentDidMount, componentDidUpdate, componentWillUnmount.',
@@ -33,6 +42,7 @@ const articles = [
   {
     name: 'react-routing-basics',
     title: 'React Router Basics',
+    imageUrl: img4,
     content: [
       'React Router allows navigation between pages without a page reload.',
       'Set up routes using BrowserRouter, Routes, and Route components.',
@@ -43,6 +53,7 @@ const articles = [
   {
     name: 'react-state-management',
     title: 'Managing State in React',
+    imageUrl: img5,
     content: [
       'State allows components to keep track of dynamic data.',
       'useState hook lets functional components manage state.',
