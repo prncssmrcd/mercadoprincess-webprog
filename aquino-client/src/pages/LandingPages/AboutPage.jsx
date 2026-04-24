@@ -1,12 +1,17 @@
-import Button from '../components/Button';
-import about from '../assets/about/about.png';
+import Button from '../../components/Button';
+import about from '../../assets/about/about.png';
+import card1 from '../../assets/cards/1.png';
+import card2 from '../../assets/cards/2.png';
+import card3 from '../../assets/cards/3.png';
 
 const AboutPage = () => {
+  const gridImages = [card1, card2, card3, card1];
+
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <section className="rounded-3xl border-2 border-orange-900 bg-orange-50 px-5 py-8 sm:px-8 sm:py-10">
         <div className="grid gap-6 lg:grid-cols-2 lg:items-center">
-          <div className="relative min-h-72 overflow-hidden rounded-3xl border-2 border-dashed border-orange-200 bg-orange-50">
+          <div className="relative min-h-72 overflow-hidden rounded-3xl border border-orange-300 bg-orange-100">
             <img
               src={about}
               alt="Orange logo"
@@ -15,17 +20,15 @@ const AboutPage = () => {
           </div>
 
           <div>
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-              About Section
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
+              About Us
             </p>
-            <h1 className="max-w-xl text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl">
-              A profile wireframe focused on layout, spacing, and content
-              grouping.
+            <h1 className="max-w-xl text-3xl font-bold leading-tight text-orange-950 sm:text-4xl">
+              Designed for clarity, speed, and a memorable brand tone.
             </h1>
-            <p className="mt-4 max-w-lg text-sm leading-7 text-neutral-600 sm:text-base">
-              This page follows the same low-fidelity system as the homepage
-              with a simple hero, overview blocks, and supporting sections for
-              profile details.
+            <p className="mt-4 max-w-lg text-sm leading-7 text-orange-800 sm:text-base">
+              We build focused interfaces where each section has clear purpose,
+              approachable visuals, and straightforward navigation.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -38,12 +41,12 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-          Profile Overview
+      <section className="rounded-3xl border-2 border-orange-900 bg-orange-50 px-5 py-8 sm:px-8 sm:py-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
+          Snapshot
         </p>
-        <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
-          Quick summary blocks
+        <h2 className="mt-2 text-2xl font-semibold text-orange-950">
+          Team and delivery metrics
         </h2>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -55,12 +58,12 @@ const AboutPage = () => {
           ].map((item) => (
             <div
               key={item.label}
-              className="rounded-3xl border-2 border-neutral-900 bg-orange-50 p-5"
+              className="rounded-3xl border border-orange-300 bg-orange-100/70 p-5"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
                 {item.label}
               </p>
-              <p className="mt-2 text-2xl font-bold text-neutral-900">
+              <p className="mt-2 text-2xl font-bold text-orange-950">
                 {item.value}
               </p>
             </div>
@@ -68,14 +71,14 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <section className="rounded-3xl border-2 border-orange-900 bg-orange-50 px-5 py-8 sm:px-8 sm:py-10 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Left Column: Content Blocks */}
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
               Section Flow
             </p>
-            <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
+            <h2 className="mt-2 text-2xl font-semibold text-orange-950">
               Stacked content wireframe
             </h2>
 
@@ -96,12 +99,12 @@ const AboutPage = () => {
               ].map((item, index) => (
                 <article
                   key={index}
-                  className="rounded-3xl border-2 border-neutral-900 bg-white p-5 hover:bg-orange-50 transition-colors"
+                  className="rounded-3xl border border-orange-300 bg-orange-100/70 p-5 transition-colors hover:bg-orange-100"
                 >
-                  <h3 className="text-lg font-semibold text-neutral-900">
+                  <h3 className="text-lg font-semibold text-orange-950">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-neutral-600">
+                  <p className="mt-3 text-sm leading-6 text-orange-800">
                     {item.desc}
                   </p>
                 </article>
@@ -110,19 +113,23 @@ const AboutPage = () => {
           </div>
 
           {/* Right Column: Visual Grid Container */}
-          <div className="rounded-3xl border-2 border-neutral-900 bg-orange-50 p-6 flex flex-col justify-between">
+          <div className="flex flex-col justify-between rounded-3xl border border-orange-300 bg-orange-100/70 p-6">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
                 Visual Grid
               </p>
 
               <div className="mt-5 grid grid-cols-2 gap-4">
-                {[1, 2, 3, 4].map((item) => (
+                {gridImages.map((image, index) => (
                   <div
-                    key={item}
-                    className="flex aspect-square items-center justify-center rounded-[1.25rem] border-2 border-dashed border-orange-200 bg-white"
+                    key={`grid-image-${index}`}
+                    className="flex aspect-square items-center justify-center rounded-[1.25rem] border border-orange-300 bg-orange-50"
                   >
-                    <div className="h-12 w-12 border-2 border-neutral-200 bg-orange-50/50" />
+                    <img
+                      src={image}
+                      alt={`Grid preview ${index + 1}`}
+                      className="h-full w-full rounded-[1.1rem] object-cover"
+                    />
                   </div>
                 ))}
               </div>
@@ -131,11 +138,11 @@ const AboutPage = () => {
             {/* Using your custom Button component for consistency */}
             <div className="mt-6">
               <Button
-                to="/details"
+                to="/articles"
                 variant="primary"
                 className="w-full lg:w-auto"
               >
-                View Section
+                View Articles
               </Button>
             </div>
           </div>
