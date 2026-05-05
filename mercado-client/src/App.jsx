@@ -18,10 +18,10 @@ function App() {
         <div>
           <h1>Welcome to my React Vite App</h1>
           <p>
-            Name : <code>Aquino, Mark Wendell M.</code>
+            Name : <code>Princess Nicole Mercado</code>
           </p>
           <p>
-            Email : <code>aquinomm1@students.national-u.edu.ph</code>
+            Email : <code>princessmercado132@gmail.com</code>
           </p>
           <p>
             Course : <code>BSIT - Mobile and Web Application</code>
