@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="24" y1="20" x2="136" y2="148" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7FAF3"/>
+      <stop offset="1" stop-color="#F0F4FF"/>
+    </linearGradient>
+    <linearGradient id="bottle" x1="56" y1="36" x2="104" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="14" y="14" width="132" height="132" rx="26" fill="url(#bg)"/>
+  <rect x="66" y="28" width="28" height="18" rx="8" fill="#FFFFFF" opacity="0.92"/>
+  <rect x="54" y="46" width="52" height="86" rx="18" fill="url(#bottle)" stroke="#FFFFFF" stroke-opacity="0.8"/>
+
+  <!-- foam -->
+  <g opacity="0.9">
+    <circle cx="62" cy="92" r="9" fill="#FFFFFF"/>
+    <circle cx="74" cy="86" r="6" fill="#FFFFFF"/>
+    <circle cx="88" cy="92" r="8" fill="#FFFFFF"/>
+    <circle cx="98" cy="86" r="5" fill="#FFFFFF"/>
+    <circle cx="80" cy="102" r="10" fill="#FFFFFF"/>
+  </g>
+
+  <path d="M63 120c11 8 23 8 34 0" stroke="#31C48D" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+</svg>

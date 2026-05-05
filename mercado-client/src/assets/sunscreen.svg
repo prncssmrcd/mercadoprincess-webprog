@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="20" y1="18" x2="140" y2="146" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF6DB"/>
+      <stop offset="1" stop-color="#F2F8FF"/>
+    </linearGradient>
+    <linearGradient id="tube" x1="58" y1="36" x2="106" y2="134" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="14" y="14" width="132" height="132" rx="26" fill="url(#bg)"/>
+
+  <!-- sun -->
+  <g opacity="0.9">
+    <circle cx="118" cy="50" r="12" fill="#FFB020"/>
+    <path d="M118 30v7M118 63v7M98 50h7M131 50h7M104 36l5 5M127 59l5 5M104 64l5-5M127 41l5-5" stroke="#FFB020" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- tube -->
+  <path d="M62 40c0-8 6-14 14-14h8c8 0 14 6 14 14v76c0 12-10 22-22 22s-22-10-22-22V40Z" fill="url(#tube)" stroke="#FFFFFF" stroke-opacity="0.8"/>
+  <rect x="66" y="102" width="28" height="10" rx="5" fill="#FFB020" opacity="0.65"/>
+  <rect x="70" y="120" width="20" height="10" rx="4" fill="#222222" opacity="0.12"/>
+  <path d="M72 84h16" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="6" stroke-linecap="round"/>
+  <path d="M72 72h22" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="6" stroke-linecap="round"/>
+</svg>
