@@ -16,16 +16,13 @@ const AboutPage = () => {
 
           <div>
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-              About Section
+              About Us
             </p>
             <h1 className="max-w-xl text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl">
-              A profile wireframe focused on layout, spacing, and content
-              grouping.
+              Beauty Rooted in Science and Nature
             </h1>
             <p className="mt-4 max-w-lg text-sm leading-7 text-neutral-600 sm:text-base">
-              This page follows the same low-fidelity system as the homepage
-              with a simple hero, overview blocks, and supporting sections for
-              profile details.
+              At Mercado Beauty, we believe that great skincare combines the best of science with natural ingredients. Founded in 2018, our mission is to create effective, sustainable, and accessible beauty solutions for everyone.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -40,18 +37,18 @@ const AboutPage = () => {
 
       <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-          Profile Overview
+          Our Achievements
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
-          Quick summary blocks
+          Growing Together
         </h2>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { label: "Years", value: "6" },
-            { label: "Projects", value: "16" },
-            { label: "Clients", value: "21" },
-            { label: "Focus Areas", value: "8" },
+            { label: "Years in Business", value: "6" },
+            { label: "Product Lines", value: "16" },
+            { label: "Happy Customers", value: "50K" },
+            { label: "Countries", value: "25" },
           ].map((item) => (
             <div
               key={item.label}

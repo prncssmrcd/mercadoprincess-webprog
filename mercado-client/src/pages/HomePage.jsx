@@ -11,14 +11,13 @@ const HomePage = () => {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="space-y-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-              Hero Section
+              Premium Skincare
             </p>
             <h1 className="max-w-xl text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl">
-              Welcome to Wireframe Studio Layout
+              Radiant Skin Starts Here
             </h1>
             <p className="max-w-lg text-sm leading-7 text-neutral-600 sm:text-base">
-              Discover the art of wireframing with a simple layout system for
-              hero content, key numbers, and feature cards.
+              Discover premium skincare products and expert beauty routines designed to help you achieve your most radiant skin. Our collection features natural ingredients and scientifically-proven formulas.
             </p>
             <div className="mt-6">
               <Button to="/about" variant="primary">
@@ -39,18 +38,18 @@ const HomePage = () => {
 
       <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-          Quick overview blocks
+          Our Impact
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
-          Projects
+          Beauty by the Numbers
         </h2>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { label: "Projects", value: "12" },
-            { label: "Sections", value: "08" },
-            { label: "Screens", value: "24" },
-            { label: "Layouts", value: "04" },
+            { label: "Customers", value: "50K" },
+            { label: "Products", value: "120" },
+            { label: "Formulas", value: "85" },
+            { label: "5-Star Reviews", value: "98%" },
           ].map((item) => (
             <div
               key={item.label}
@@ -69,27 +68,27 @@ const HomePage = () => {
 
       <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-          Feature Cards
+          Featured Collection
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
-          Simple wireframe cards
+          Our Best-Sellers
         </h2>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {[
             {
-              title: "Feature Card One",
-              body: "A clean placeholder for title, short copy, and action.",
+              title: "Hydra-Boost Serum",
+              body: "Intensive hydration serum with hyaluronic acid and vitamin E for plump, radiant skin.",
               image: card1,
             },
             {
-              title: "Feature Card Two",
-              body: "Balanced spacing keeps the card layout easy to scan.",
+              title: "Crystal Clear Cleanser",
+              body: "Gentle gel cleanser that removes impurities while maintaining skin's natural pH balance.",
               image: card2,
             },
             {
-              title: "Feature Card Three",
-              body: "Repeated blocks give the page a consistent wireframe rhythm.",
+              title: "Renewal Night Cream",
+              body: "Luxurious anti-aging cream with retinol complex for overnight skin restoration.",
               image: card3,
             },
           ].map((card) => (

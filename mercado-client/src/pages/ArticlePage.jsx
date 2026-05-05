@@ -9,14 +9,13 @@ const ArticlePage = () => {
       <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-            Articles
+            Beauty Tips & Tutorials
           </p>
           <h1 className="mt-2 text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl">
-            Featured articles in a simple card grid
+            Expert Skincare Guides
           </h1>
           <p className="mt-4 text-sm leading-7 text-neutral-600 sm:text-base">
-            Use these cards to practice layout basics: consistent spacing, short
-            descriptions, and clear actions per card.
+            Learn from our beauty experts about skincare routines, product recommendations, and tips for achieving your best complexion.
           </p>
 
           <div className="mt-6">
@@ -29,27 +28,27 @@ const ArticlePage = () => {
 
       <section className="border-y-2 border-neutral-900 bg-white px-4 py-6 sm:px-6 sm:py-8">
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-          Featured Articles
+          Knowledge Base
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
-          Article cards
+          Beauty Education
         </h2>
 
         <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto max-w-5xl">
           {[
             {
-              title: "Article One",
-              body: "A simple placeholder for a featured article with image, title, and copy.",
+              title: "The Complete AM Routine",
+              body: "Master the perfect morning skincare routine with step-by-step guidance for dewy, protected skin.",
               image: card1,
             },
             {
-              title: "Article Two",
-              body: "Build clean sections and text-leading to keep layout readable.",
+              title: "Anti-Aging Essentials",
+              body: "Discover key ingredients like retinol and peptides that fight fine lines and boost skin firmness.",
               image: card2,
             },
             {
-              title: "Article Three",
-              body: "Using a shared pattern makes each card section easy to scan.",
+              title: "Sensitive Skin Solutions",
+              body: "Learn how to care for sensitive skin with gentle formulas and a minimalist approach.",
               image: card3,
             },
           ].map((article) => (
