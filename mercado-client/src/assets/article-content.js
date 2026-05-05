@@ -1,75 +1,63 @@
-import img1 from './cards/1.png';
-import img2 from './cards/2.png';
-import img3 from './cards/3.png';
-import img4 from './cards/4.png';
-import img5 from './cards/5.png';
+const img1 =
+  'https://images.unsplash.com/photo-1612810436541-336d1d59f33e?auto=format&fit=crop&w=1200&q=80';
+const img2 =
+  'https://images.unsplash.com/photo-1612810435805-9f1d9c2a7f1c?auto=format&fit=crop&w=1200&q=80';
+const img3 =
+  'https://images.unsplash.com/photo-1585232351009-aa87416fca90?auto=format&fit=crop&w=1200&q=80';
+const img4 =
+  'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=1200&q=80';
+const img5 =
+  'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1200&q=80';
 
 const articles = [
   {
-    name: 'react-props-and-styling', // String
-    title: 'Understanding React Props and Styling', // String
+    name: 'teen-skincare-starter-routine',
+    title: 'Teen Skincare: A Simple Starter Routine',
     imageUrl: img1,
-    // List --> String
     content: [
-      'Props (short for properties) allow you to pass data between components. They are read-only and essential for component reusability.',
-      'Example:\nfunction Welcome(props) {\n return <h1>Hello, {props.name}!</h1>;\n}',
-      'React supports multiple styling approaches: inline styles, CSS files, CSS Modules, and styled-components.',
-      "Inline Style Example:\nconst style = { color: 'blue' };\n<p style={style}>Styled Text</p>",
+      'If you are starting to get oily, breakouts, or dryness, keep it simple: cleanse, moisturize, and use sunscreen in the morning.',
+      'Choose gentle, fragrance-light products and give your routine 2–4 weeks before switching everything again.',
+      'Consistency matters more than using a lot of products—your skin barrier will thank you.',
     ],
   },
   {
-    name: 'react-functional-components',
-    title: 'React Functional Components',
+    name: 'acne-basics-what-helps',
+    title: 'Acne Basics: What Helps (and What to Avoid)',
     imageUrl: img2,
     content: [
-      'Functional components are simple JavaScript functions that return JSX.',
-      'They are stateless by default but can use hooks like useState and useEffect.',
-      'Example:\nfunction HelloWorld() {\n return <h1>Hello, World!</h1>;\n}',
-      'They are preferred in modern React apps for simplicity and performance.',
+      'For acne-prone skin, look for salicylic acid (BHA) or benzoyl peroxide and start slowly to avoid irritation.',
+      'Avoid harsh scrubs and over-washing—too much friction can make redness and breakouts worse.',
+      'If you use treatments, moisturize after to keep your skin barrier comfortable.',
     ],
   },
   {
-    name: 'react-component-lifecycle',
-    title: 'React Component Lifecycle',
+    name: 'morning-routine-cleanse-moisturize-spf',
+    title: 'Morning Routine: Cleanse, Moisturize, SPF',
     imageUrl: img3,
     content: [
-      'Class components have lifecycle methods: mounting, updating, unmounting.',
-      'Key methods include: componentDidMount, componentDidUpdate, componentWillUnmount.',
-      'Functional components use the useEffect hook to mimic lifecycle behavior.',
-      "Example:\nuseEffect(() => {\n console.log('Mounted');\n return () => console.log('Unmounted');\n}, []);",
+      'A simple morning routine keeps skin balanced and helps prevent dark marks: gentle cleanser, moisturizer, then sunscreen.',
+      'Sunscreen is the most important step for protecting skin during school days and outdoor activities.',
+      'If your skin feels tight, switch to a milder cleanser and add a richer moisturizer.',
     ],
   },
   {
-    name: 'react-component-lifecycle',
-    title: 'React Component Lifecycle',
-    imageUrl: img3,
-    content: [
-      'Class components have lifecycle methods: mounting, updating, unmounting.',
-      'Key methods include: componentDidMount, componentDidUpdate, componentWillUnmount.',
-      'Functional components use the useEffect hook to mimic lifecycle behavior.',
-      "Example:\nuseEffect(() => {\n console.log('Mounted');\n return () => console.log('Unmounted');\n}, []);",
-    ],
-  },
-  {
-    name: 'react-routing-basics',
-    title: 'React Router Basics',
+    name: 'sensitive-skin-calm-and-repair',
+    title: 'Sensitive Skin: Calm and Repair First',
     imageUrl: img4,
     content: [
-      'React Router allows navigation between pages without a page reload.',
-      'Set up routes using BrowserRouter, Routes, and Route components.',
-      'Example:\n<Routes>\n <Route path="/" element={<Home />} />\n <Route path="/about" element={<About />} />\n</Routes>',
-      'Use Link component for navigation:\n<Link to="/about">About</Link>',
+      'If your skin gets itchy or stings, simplify your routine and avoid using many active ingredients at once.',
+      'Look for soothing ingredients like ceramides, glycerin, and panthenol to support the skin barrier.',
+      'Patch test new products and introduce only one change at a time.',
     ],
   },
   {
-    name: 'react-state-management',
-    title: 'Managing State in React',
+    name: 'night-routine-cleanse-treat-moisturize',
+    title: 'Night Routine: Cleanse + Treat (Optional) + Moisturize',
     imageUrl: img5,
     content: [
-      'State allows components to keep track of dynamic data...',
-      'useState hook lets functional components manage state.',
-      'Example:\nconst [count, setCount] = useState(0);',
-      'Updating state triggers a re-render with the new value.',
+      'At night, cleansing removes sunscreen and dirt from the day—this is when treatments work best.',
+      'If you use acne treatments, start 2–3 nights a week and moisturize after to reduce dryness.',
+      'Keep it gentle and consistent—sleep and hydration help your skin recover, too.',
     ],
   },
 ];

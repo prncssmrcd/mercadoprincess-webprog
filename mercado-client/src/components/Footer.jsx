@@ -9,11 +9,11 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <h2 className="text-xl font-bold tracking-tight text-zinc-900">
-              ORANGE<span className="text-orange-500">.</span>
+              NU SKIN<span className="text-pink-500">.</span>
             </h2>
             <p className="mt-4 max-w-xs text-sm leading-6 text-zinc-600">
-              A low-fidelity React wireframe project. Focused on clean layout,
-              modular components, and consistent spacing.
+              Skincare essentials and simple routines—cleanse, hydrate, and
+              protect with confidence every day.
             </p>
           </div>
 

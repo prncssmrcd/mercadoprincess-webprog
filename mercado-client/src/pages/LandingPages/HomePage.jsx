@@ -1,24 +1,28 @@
 import Button from '../../components/Button';
-import heroLogo from '../../assets/hero/hero.png';
-import card1 from '../../assets/cards/1.png';
-import card2 from '../../assets/cards/2.png';
-import card3 from '../../assets/cards/3.png';
+
+const heroImage =
+  'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=1600&q=80';
+const productImages = [
+  'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1585232351009-aa87416fca90?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=1200&q=80',
+];
 
 const HomePage = () => {
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-      <section className="overflow-hidden rounded-3xl border-2 border-orange-900 bg-orange-50 px-5 py-8 sm:px-8 sm:py-10">
+      <section className="overflow-hidden rounded-3xl border-2 border-neutral-900 bg-white px-5 py-8 sm:px-8 sm:py-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div className="space-y-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
-              Modern Landing
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              NU Skin Skincare
             </p>
-            <h1 className="max-w-xl text-4xl font-bold leading-tight text-orange-950 sm:text-5xl">
-              Build and manage your orange-powered dashboard.
+            <h1 className="max-w-xl text-4xl font-bold leading-tight text-neutral-900 sm:text-5xl">
+              Clear, Confident Skin Starts Here
             </h1>
-            <p className="max-w-lg text-sm leading-7 text-orange-800 sm:text-base">
-              A polished UI starter with clear sectioning, helpful cards, and
-              fast paths to account and content pages.
+            <p className="max-w-lg text-sm leading-7 text-neutral-600 sm:text-base">
+              Discover everyday essentials for cleansing, hydration, and sun
+              protection—simple routines that support healthy-looking skin.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Button to="/about" variant="primary">
@@ -30,39 +34,39 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="relative min-h-72 overflow-hidden rounded-3xl border border-orange-300 bg-orange-100">
+          <div className="relative min-h-72 overflow-hidden rounded-3xl border border-pink-200 bg-pink-50">
             <img
-              src={heroLogo}
-              alt="Orange logo"
+              src={heroImage}
+              alt="NU Skin skincare"
               className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
         </div>
       </section>
 
-      <section className="rounded-3xl border-2 border-orange-900 bg-orange-50 px-5 py-8 sm:px-8 sm:py-10">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
-          Snapshot
+      <section className="rounded-3xl border-2 border-neutral-900 bg-white px-5 py-8 sm:px-8 sm:py-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+          Our Impact
         </p>
-        <h2 className="mt-2 text-2xl font-semibold text-orange-950">
-          Platform metrics
+        <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
+          Skincare by the Numbers
         </h2>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { label: 'Projects', value: '12' },
-            { label: 'Sections', value: '08' },
-            { label: 'Screens', value: '24' },
-            { label: 'Layouts', value: '04' },
+            { label: 'Customers', value: '50K+' },
+            { label: 'Essentials', value: '30+' },
+            { label: 'Derm-Inspired', value: '100%' },
+            { label: 'Repeat Buyers', value: '98%' },
           ].map((item) => (
             <div
               key={item.label}
-              className="rounded-3xl border border-orange-300 bg-orange-100/70 p-5"
+              className="rounded-3xl border border-pink-200 bg-pink-50 p-5"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
                 {item.label}
               </p>
-              <p className="mt-2 text-3xl font-bold text-orange-950">
+              <p className="mt-2 text-3xl font-bold text-neutral-900">
                 {item.value}
               </p>
             </div>
@@ -70,37 +74,37 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="rounded-3xl border-2 border-orange-900 bg-orange-50 px-5 py-8 sm:px-8 sm:py-10">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-orange-700">
-          Feature Highlights
+      <section className="rounded-3xl border-2 border-neutral-900 bg-white px-5 py-8 sm:px-8 sm:py-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+          Best Sellers
         </p>
-        <h2 className="mt-2 text-2xl font-semibold text-orange-950">
-          What you can do quickly
+        <h2 className="mt-2 text-2xl font-semibold text-neutral-900">
+          Everyday skin essentials
         </h2>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {[
             {
-              title: 'Feature Card One',
-              body: 'A clean placeholder for title, short copy, and action.',
-              image: card1,
+              title: 'Hydra Balance Cleanser',
+              body: 'A gentle daily cleanse that removes oil and impurities without stripping.',
+              image: productImages[0],
             },
             {
-              title: 'Feature Card Two',
-              body: 'Balanced spacing keeps the card layout easy to scan.',
-              image: card2,
+              title: 'Barrier Repair Moisturizer',
+              body: 'Lightweight hydration to help keep skin soft, calm, and comfortable.',
+              image: productImages[1],
             },
             {
-              title: 'Feature Card Three',
-              body: 'Repeated blocks give the page a consistent wireframe rhythm.',
-              image: card3,
+              title: 'Everyday SPF Shield',
+              body: 'Daily sun protection that layers well under makeup and feels non-greasy.',
+              image: productImages[2],
             },
           ].map((card) => (
             <article
               key={card.title}
-              className="rounded-3xl border border-orange-300 bg-orange-100/70 p-5"
+              className="rounded-3xl border border-pink-200 bg-pink-50 p-5"
             >
-              <div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-[1.25rem] bg-orange-200/60">
+              <div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-[1.25rem] bg-pink-100">
                 {card.image ? (
                   <img
                     src={card.image}
@@ -108,13 +112,13 @@ const HomePage = () => {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="h-12 w-12 border-2 border-orange-200 bg-white" />
+                  <div className="h-12 w-12 border-2 border-pink-200 bg-white" />
                 )}
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-orange-950">
+              <h3 className="mt-4 text-lg font-semibold text-neutral-900">
                 {card.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-orange-800">
+              <p className="mt-3 text-sm leading-6 text-neutral-600">
                 {card.body}
               </p>
               <Button className="mt-5" variant="primary">
