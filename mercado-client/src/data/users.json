@@ -1,0 +1,80 @@
+[
+  {
+    "firstName": "Sophia",
+    "lastName": "Rivera",
+    "age": "28",
+    "gender": "female",
+    "contactNumber": "09171234567",
+    "email": "sophia.rivera@mercado.beauty",
+    "role": "admin",
+    "username": "sophiarivera",
+    "password": "NuSkin2026",
+    "address": "Makati, Metro Manila",
+    "isActive": true
+  },
+  {
+    "firstName": "Emma",
+    "lastName": "Santos",
+    "age": "24",
+    "gender": "female",
+    "contactNumber": "09182345678",
+    "email": "emma.santos@mercado.beauty",
+    "role": "editor",
+    "username": "emmasantos",
+    "password": "Beauty123!",
+    "address": "BGC, Taguig",
+    "isActive": true
+  },
+  {
+    "firstName": "Isabella",
+    "lastName": "Lopez",
+    "age": "26",
+    "gender": "female",
+    "contactNumber": "09193456789",
+    "email": "isabella.lopez@mercado.beauty",
+    "role": "viewer",
+    "username": "isabellalopez",
+    "password": "Skincare23!",
+    "address": "Quezon City",
+    "isActive": true
+  },
+  {
+    "firstName": "Olivia",
+    "lastName": "Gonzales",
+    "age": "25",
+    "gender": "female",
+    "contactNumber": "09214567890",
+    "email": "olivia.gonzales@mercado.beauty",
+    "role": "viewer",
+    "username": "oliviagonzales",
+    "password": "Glow2026!",
+    "address": "Pasig City",
+    "isActive": true
+  },
+  {
+    "firstName": "Mia",
+    "lastName": "Fernandez",
+    "age": "27",
+    "gender": "female",
+    "contactNumber": "09225678901",
+    "email": "mia.fernandez@mercado.beauty",
+    "role": "editor",
+    "username": "miafernandez",
+    "password": "Radiant1!",
+    "address": "Marikina City",
+    "isActive": true
+  },
+  {
+    "firstName": "Ava",
+    "lastName": "Martinez",
+    "age": "23",
+    "gender": "female",
+    "contactNumber": "09236789012",
+    "email": "ava.martinez@mercado.beauty",
+    "role": "viewer",
+    "username": "avamartinez",
+    "password": "Princess2!",
+    "address": "Cebu City",
+    "isActive": false
+  }
+]

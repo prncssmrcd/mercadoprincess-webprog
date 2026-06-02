@@ -14,6 +14,13 @@ import SignupPage from './pages/AuthPages/SignupPage';
 
 import NotFoundPage from './pages/NotFoundPage';
 
+// Dashboard Structure
+import DashLayout from './layouts/DashLayout';
+import DashboardPage from './pages/DashboardPages/DashboardPage';
+import DashArticlesPage from './pages/DashboardPages/DashArticlesPage';
+import ReportsPage from './pages/DashboardPages/ReportsPage';
+import UsersPage from './pages/DashboardPages/UsersPage';
+
 // const routes = [
 //   {
 //     path: '/',
@@ -52,6 +59,16 @@ const routes = [
       { path: 'signin', element: <LoginPage /> },
       { path: 'sign-in', element: <LoginPage /> },
       { path: 'signup', element: <SignupPage /> },
+    ],
+  },
+  {
+    path: 'dashboard',
+    element: <DashLayout />,
+    children: [
+      { index: true, element: <DashboardPage /> },
+      { path: 'articles', element: <DashArticlesPage /> },
+      { path: 'reports', element: <ReportsPage /> },
+      { path: 'users', element: <UsersPage /> },
     ],
   },
 ];
