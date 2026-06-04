@@ -22,10 +22,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import SearchIcon from '@mui/icons-material/Search';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import {
   genders,
   labelize,
@@ -158,7 +154,7 @@ function UsersPage() {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon sx={{ color: '#6c5d52' }} />
+                <span style={{ color: '#6c5d52', fontWeight: 700 }}>Search</span>
               </InputAdornment>
             ),
           }}
@@ -184,7 +180,7 @@ function UsersPage() {
         </TextField>
         <Button
           variant="contained"
-          startIcon={<AddIcon />}
+          startIcon={<span aria-hidden="true">+</span>}
           onClick={openAddDialog}
           sx={{ backgroundColor: '#826a5f', '&:hover': { backgroundColor: '#6b5548' } }}
         >
@@ -228,15 +224,17 @@ function UsersPage() {
                       size="small"
                       onClick={() => openEditDialog(user)}
                       sx={{ color: '#826a5f' }}
+                      aria-label={`Edit ${user.firstName}`}
                     >
-                      <EditIcon fontSize="small" />
+                      <span aria-hidden="true">Edit</span>
                     </IconButton>
                     <IconButton
                       size="small"
                       onClick={() => deleteUser(user.id)}
                       sx={{ color: '#b02a37' }}
+                      aria-label={`Delete ${user.firstName}`}
                     >
-                      <DeleteIcon fontSize="small" />
+                      <span aria-hidden="true">Delete</span>
                     </IconButton>
                   </Stack>
                 </TableCell>

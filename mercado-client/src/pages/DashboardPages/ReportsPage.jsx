@@ -15,8 +15,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import PrintIcon from '@mui/icons-material/Print';
-import DownloadIcon from '@mui/icons-material/Download';
 import {
   genders,
   labelize,
@@ -69,7 +67,12 @@ function ReportsPage() {
       </Box>
 
       <Stack direction="row" spacing={1.5} sx={{ mb: 2.5 }}>
-        <Button variant="contained" startIcon={<PrintIcon />} onClick={handlePrint} sx={{ backgroundColor: '#826a5f' }}>
+        <Button
+          variant="contained"
+          startIcon={<span aria-hidden="true">Print</span>}
+          onClick={handlePrint}
+          sx={{ backgroundColor: '#826a5f' }}
+        >
           Print Report
         </Button>
       </Stack>

@@ -18,8 +18,6 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import ClearIcon from '@mui/icons-material/Clear';
-import SearchIcon from '@mui/icons-material/Search';
 import { DataGrid } from '@mui/x-data-grid';
 import {
   createArticle,
@@ -229,7 +227,7 @@ function DashArticlesPage() {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon sx={{ color: '#6c5d52' }} />
+                <span style={{ color: '#6c5d52', fontWeight: 700 }}>Search</span>
               </InputAdornment>
             ),
           }}
