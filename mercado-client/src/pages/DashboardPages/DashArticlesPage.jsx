@@ -13,12 +13,17 @@ import {
   MenuItem,
   Paper,
   Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   TextField,
   Typography,
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { DataGrid } from '@mui/x-data-grid';
 import {
   createArticle,
   deleteArticle,
@@ -156,56 +161,6 @@ function DashArticlesPage() {
     }
   };
 
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'name', headerName: 'Slug', width: 180 },
-    { field: 'title', headerName: 'Title', width: 220, editable: false },
-    {
-      field: 'description',
-      headerName: 'Description',
-      width: 250,
-      renderCell: (params) => truncate(params.value, 50),
-    },
-    {
-      field: 'isActive',
-      headerName: 'Status',
-      width: 120,
-      renderCell: (params) => (
-        <Chip
-          label={params.value ? 'Active' : 'Inactive'}
-          size="small"
-          color={params.value ? 'success' : 'default'}
-        />
-      ),
-    },
-    {
-      field: 'actions',
-      headerName: 'Actions',
-      width: 150,
-      sortable: false,
-      renderCell: (params) => (
-        <Stack direction="row" spacing={1}>
-          <Button
-            variant="text"
-            size="small"
-            onClick={() => openModal(articles.find((a) => a.id === params.row.id))}
-            sx={{ color: '#826a5f' }}
-          >
-            Edit
-          </Button>
-          <Button
-            variant="text"
-            size="small"
-            onClick={() => removeArticle(params.row.id)}
-            sx={{ color: '#b02a37' }}
-          >
-            Delete
-          </Button>
-        </Stack>
-      ),
-    },
-  ];
-
   return (
     <Box sx={{ p: 4, maxWidth: 1200, mx: 'auto' }}>
       <Box sx={{ mb: 4 }}>
@@ -249,15 +204,71 @@ function DashArticlesPage() {
         </Button>
       </Stack>
 
-      <Paper sx={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={filteredArticles}
-          columns={columns}
-          loading={loading}
-          pageSizeOptions={[5, 10, 20]}
-          initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
-        />
-      </Paper>
+      <TableContainer component={Paper} sx={{ borderRadius: 1 }}>
+        <Table sx={{ minWidth: 900 }}>
+          <TableHead>
+            <TableRow sx={{ bgcolor: '#826a5f' }}>
+              <TableCell sx={{ color: '#fff', fontWeight: 700 }}>ID</TableCell>
+              <TableCell sx={{ color: '#fff', fontWeight: 700 }}>Slug</TableCell>
+              <TableCell sx={{ color: '#fff', fontWeight: 700 }}>Title</TableCell>
+              <TableCell sx={{ color: '#fff', fontWeight: 700 }}>Description</TableCell>
+              <TableCell sx={{ color: '#fff', fontWeight: 700 }}>Status</TableCell>
+              <TableCell sx={{ color: '#fff', fontWeight: 700 }}>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={6} sx={{ py: 5, textAlign: 'center', color: '#6c5d52' }}>
+                  Loading skincare articles...
+                </TableCell>
+              </TableRow>
+            ) : filteredArticles.length > 0 ? (
+              filteredArticles.map((article) => (
+                <TableRow key={article.id} hover>
+                  <TableCell>{article.id}</TableCell>
+                  <TableCell>{article.name}</TableCell>
+                  <TableCell>{article.title}</TableCell>
+                  <TableCell>{truncate(article.description || article.content?.[0], 70)}</TableCell>
+                  <TableCell>
+                    <Chip
+                      label={article.isActive ? 'Active' : 'Inactive'}
+                      size="small"
+                      color={article.isActive ? 'success' : 'default'}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Stack direction="row" spacing={1}>
+                      <Button
+                        variant="text"
+                        size="small"
+                        onClick={() => openModal(article)}
+                        sx={{ color: '#826a5f' }}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="text"
+                        size="small"
+                        onClick={() => removeArticle(article.id)}
+                        sx={{ color: '#b02a37' }}
+                      >
+                        Delete
+                      </Button>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={6} sx={{ py: 5, textAlign: 'center', color: '#6c5d52' }}>
+                  No skincare articles found.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
       <Dialog open={modal.open} onClose={closeModal} fullScreen={fullScreen} maxWidth="sm" fullWidth>
         <DialogTitle sx={{ color: '#4c4038', fontWeight: 600 }}>
