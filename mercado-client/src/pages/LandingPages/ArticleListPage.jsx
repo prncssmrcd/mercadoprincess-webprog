@@ -1,8 +1,39 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
-import articles from '../../assets/article-content';
+import {
+  fetchArticles,
+  mapArticleFromApi,
+} from '../../services/ArticleService.js';
 
 function ArticleListPage() {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const loadArticles = async () => {
+      try {
+        setLoading(true);
+        setError('');
+        const { data } = await fetchArticles();
+        const list = data?.articles ?? [];
+        setArticles(
+          list
+            .map(mapArticleFromApi)
+            .filter((article) => article.isActive),
+        );
+      } catch (loadError) {
+        console.error('Error loading skincare articles:', loadError);
+        setError('Unable to load skincare articles. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadArticles();
+  }, []);
+
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
       <section className="rounded-3xl border-2 border-neutral-900 bg-white px-5 py-8 sm:px-8 sm:py-10">
@@ -20,6 +51,16 @@ function ArticleListPage() {
       </section>
 
       <section className="rounded-3xl border-2 border-neutral-900 bg-white px-5 py-8 sm:px-8 sm:py-10">
+        {loading && (
+          <p className="mx-auto max-w-5xl text-sm text-neutral-600">
+            Loading skincare articles...
+          </p>
+        )}
+        {error && (
+          <p className="mx-auto max-w-5xl rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {error}
+          </p>
+        )}
         <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2">
           {articles.map((article) => (
             <article
@@ -37,7 +78,7 @@ function ArticleListPage() {
                 {article.title}
               </h2>
               <p className="mt-3 text-sm leading-6 text-neutral-600">
-                {article.content[0]}
+                {article.content[0] || 'Read this Mercado Princess skincare guide.'}
               </p>
               <div className="mt-5">
                 <Link
@@ -50,6 +91,11 @@ function ArticleListPage() {
             </article>
           ))}
         </div>
+        {!loading && !error && articles.length === 0 && (
+          <p className="mx-auto max-w-5xl text-sm text-neutral-600">
+            No skincare articles are available yet.
+          </p>
+        )}
         <div className="mx-auto mt-6 max-w-5xl">
           <Button to="/">Back to Home</Button>
         </div>

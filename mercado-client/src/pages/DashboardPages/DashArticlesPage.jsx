@@ -238,7 +238,7 @@ function DashArticlesPage() {
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
           sx={{ minWidth: 120 }}
-          displayEmpty
+          SelectProps={{ displayEmpty: true }}
         >
           <MenuItem value="">All</MenuItem>
           <MenuItem value="active">Active</MenuItem>

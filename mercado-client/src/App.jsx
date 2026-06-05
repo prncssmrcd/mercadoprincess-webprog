@@ -20,6 +20,7 @@ import DashboardPage from './pages/DashboardPages/DashboardPage';
 import DashArticlesPage from './pages/DashboardPages/DashArticlesPage';
 import ReportsPage from './pages/DashboardPages/ReportsPage';
 import UsersPage from './pages/DashboardPages/UsersPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // const routes = [
 //   {
@@ -65,10 +66,38 @@ const routes = [
     path: 'dashboard',
     element: <DashLayout />,
     children: [
-      { index: true, element: <DashboardPage /> },
-      { path: 'articles', element: <DashArticlesPage /> },
-      { path: 'reports', element: <ReportsPage /> },
-      { path: 'users', element: <UsersPage /> },
+      {
+        index: true,
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'editor', 'user']}>
+            <DashboardPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'articles',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'editor']}>
+            <DashArticlesPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'reports',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'editor', 'user']}>
+            <ReportsPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'users',
+        element: (
+          <ProtectedRoute allowedRoles={['admin']}>
+            <UsersPage />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ];

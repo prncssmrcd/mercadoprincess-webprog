@@ -1,6 +1,8 @@
 import usersSeed from '../data/users.json';
+import constants from '../constants.js';
 
 const STORAGE_KEY = 'mercado_users';
+const API_URL = constants.HOST ? `${constants.HOST}/users` : '';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -37,14 +39,43 @@ const writeUsers = (users) => {
   }
 };
 
-export const fetchUsers = () =>
-  Promise.resolve({
-    data: {
-      users: clone(readUsers()),
+const request = async (path = '', options = {}) => {
+  const response = await fetch(`${API_URL}${path}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.headers || {}),
     },
+    ...options,
   });
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.message || 'User request failed.');
+  }
+
+  return { data };
+};
+
+export const fetchUsers = () => {
+  if (!API_URL) {
+    return Promise.resolve({
+      data: {
+        users: clone(readUsers()),
+      },
+    });
+  }
+
+  return request('/');
+};
 
 export const createUser = (user) => {
+  if (API_URL) {
+    return request('/', {
+      method: 'POST',
+      body: JSON.stringify(user),
+    });
+  }
+
   const users = readUsers();
   const nextUser = {
     ...user,
@@ -60,6 +91,13 @@ export const createUser = (user) => {
 export const registerUser = createUser;
 
 export const updateUser = (id, user) => {
+  if (API_URL) {
+    return request(`/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(user),
+    });
+  }
+
   const users = readUsers();
   const nextUsers = users.map((item) =>
     item._id === id || item.id === id ? { ...item, ...user } : item,
@@ -73,12 +111,33 @@ export const updateUser = (id, user) => {
 };
 
 export const deleteUser = (id) => {
+  if (API_URL) {
+    return request(`/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   const nextUsers = readUsers().filter((item) => item._id !== id && item.id !== id);
   writeUsers(nextUsers);
   return Promise.resolve({ data: { success: true } });
 };
 
-export const loginUser = (credentials) => {
+export const loginUser = async (credentials) => {
+  if (API_URL) {
+    const result = await request('/login', {
+      method: 'POST',
+      body: JSON.stringify(credentials),
+    });
+
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('token', result.data.token);
+      window.localStorage.setItem('firstName', result.data.firstName);
+      window.localStorage.setItem('type', result.data.role || result.data.type);
+    }
+
+    return result;
+  }
+
   const username = String(credentials?.username || credentials?.email || '').trim().toLowerCase();
   const password = String(credentials?.password || '');
   const user = readUsers().find((item) => {

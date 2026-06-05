@@ -89,19 +89,19 @@ function ReportsPage() {
             fullWidth
             sx={controlSx}
           />
-          <TextField select value={filters.role} onChange={updateFilter('role')} fullWidth sx={controlSx} displayEmpty>
+          <TextField select value={filters.role} onChange={updateFilter('role')} fullWidth sx={controlSx} SelectProps={{ displayEmpty: true }}>
             <MenuItem value="">Role</MenuItem>
             {roles.map((role) => (
               <MenuItem key={role} value={role}>{labelize(role)}</MenuItem>
             ))}
           </TextField>
-          <TextField select value={filters.gender} onChange={updateFilter('gender')} fullWidth sx={controlSx} displayEmpty>
+          <TextField select value={filters.gender} onChange={updateFilter('gender')} fullWidth sx={controlSx} SelectProps={{ displayEmpty: true }}>
             <MenuItem value="">Gender</MenuItem>
             {genders.map((gender) => (
               <MenuItem key={gender} value={gender}>{labelize(gender)}</MenuItem>
             ))}
           </TextField>
-          <TextField select value={filters.status} onChange={updateFilter('status')} fullWidth sx={controlSx} displayEmpty>
+          <TextField select value={filters.status} onChange={updateFilter('status')} fullWidth sx={controlSx} SelectProps={{ displayEmpty: true }}>
             <MenuItem value="">Status</MenuItem>
             {statuses.map((status) => (
               <MenuItem key={status} value={status}>{labelize(status)}</MenuItem>

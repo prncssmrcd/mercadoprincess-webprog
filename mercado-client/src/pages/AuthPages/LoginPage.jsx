@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
+import { loginUser } from '../../services/UserService.js';
 
 const inputClasses =
   'mt-2 w-full rounded-xl border border-pink-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-pink-400 focus:ring-2 focus:ring-pink-100';
@@ -8,8 +11,32 @@ const actionButtonClassName =
   'w-full rounded-xl py-3 text-[11px] tracking-[0.2em]';
 
 const LoginPage = () => {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (error) setError('');
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError('');
+
+    try {
+      setLoading(true);
+      const { data } = await loginUser(form);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('firstName', data.firstName || data.user?.firstName || '');
+      localStorage.setItem('type', data.role || data.type || data.user?.role || 'user');
+      navigate('/dashboard');
+    } catch (loginError) {
+      setError(loginError.message || 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -31,6 +58,12 @@ const LoginPage = () => {
       </p>
 
       <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+        {error && (
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
+
         <div>
           <label
             htmlFor="signin-email"
@@ -40,9 +73,13 @@ const LoginPage = () => {
           </label>
           <input
             id="signin-email"
+            name="email"
             type="email"
-            placeholder="hello@citruscorner.shop"
+            placeholder="admin@mercado.beauty"
             autoComplete="email"
+            value={form.email}
+            onChange={handleChange}
+            required
             className={inputClasses}
           />
         </div>
@@ -56,9 +93,13 @@ const LoginPage = () => {
           </label>
           <input
             id="signin-password"
+            name="password"
             type="password"
             placeholder="Password"
             autoComplete="current-password"
+            value={form.password}
+            onChange={handleChange}
+            required
             className={inputClasses}
           />
           <p className="mt-2 text-xs leading-5 text-neutral-500">
@@ -86,8 +127,9 @@ const LoginPage = () => {
           type="submit"
           variant="primary"
           className={actionButtonClassName}
+          disabled={loading}
         >
-          Sign In
+          {loading ? 'Signing In...' : 'Sign In'}
         </Button>
 
         <div className="relative py-1">

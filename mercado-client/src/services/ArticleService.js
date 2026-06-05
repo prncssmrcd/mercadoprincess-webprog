@@ -1,6 +1,8 @@
 import seedArticles from '../assets/article-content.js';
+import constants from '../constants.js';
 
 const STORAGE_KEY = 'mercado_articles';
+const API_URL = constants.HOST ? `${constants.HOST}/articles` : '';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -43,6 +45,23 @@ const asResponse = (articles) =>
     },
   });
 
+const request = async (path = '', options = {}) => {
+  const response = await fetch(`${API_URL}${path}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.headers || {}),
+    },
+    ...options,
+  });
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Article request failed.');
+  }
+
+  return { data };
+};
+
 export const mapArticleFromApi = (article) => ({
   ...article,
   imageUrl: article.imageUrl || article.image || '',
@@ -51,9 +70,19 @@ export const mapArticleFromApi = (article) => ({
   isActive: typeof article.isActive === 'boolean' ? article.isActive : true,
 });
 
-export const fetchArticles = () => asResponse(readArticles());
+export const fetchArticles = () => {
+  if (!API_URL) return asResponse(readArticles());
+  return request('/');
+};
 
 export const createArticle = (article) => {
+  if (API_URL) {
+    return request('/', {
+      method: 'POST',
+      body: JSON.stringify(article),
+    });
+  }
+
   const articles = readArticles();
   const nextArticle = {
     ...article,
@@ -66,6 +95,13 @@ export const createArticle = (article) => {
 };
 
 export const updateArticle = (id, article) => {
+  if (API_URL) {
+    return request(`/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(article),
+    });
+  }
+
   const articles = readArticles();
   const nextArticles = articles.map((item) =>
     item._id === id || item.id === id || item.name === id
@@ -83,6 +119,12 @@ export const updateArticle = (id, article) => {
 };
 
 export const deleteArticle = (id) => {
+  if (API_URL) {
+    return request(`/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   const nextArticles = readArticles().filter(
     (item) => item._id !== id && item.id !== id && item.name !== id,
   );

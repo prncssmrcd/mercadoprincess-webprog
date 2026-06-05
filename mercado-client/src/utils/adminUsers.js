@@ -1,6 +1,6 @@
 import usersSeed from '../data/users.json?raw';
 
-export const roles = ['admin', 'editor', 'viewer'];
+export const roles = ['admin', 'editor', 'user'];
 export const genders = ['male', 'female', 'other'];
 export const statuses = ['active', 'inactive'];
 
@@ -35,7 +35,7 @@ export const loadUsers = () => {
         ? String(user.role ?? '')
             .trim()
             .toLowerCase()
-        : 'viewer',
+        : 'user',
       username: String(user.username ?? '')
         .trim()
         .toLowerCase(),

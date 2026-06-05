@@ -1,11 +1,68 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
-
-import articles from '../../assets/article-content.js';
+import {
+  fetchArticles,
+  mapArticleFromApi,
+} from '../../services/ArticleService.js';
 
 function ArticlePage() {
   const { name } = useParams();
-  const article = articles.find((article) => article.name === name);
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const loadArticle = async () => {
+      try {
+        setLoading(true);
+        setError('');
+        const { data } = await fetchArticles();
+        const list = data?.articles ?? [];
+        const match = list
+          .map(mapArticleFromApi)
+          .find((item) => item.name === name && item.isActive);
+        setArticle(match || null);
+      } catch (loadError) {
+        console.error('Error loading skincare article:', loadError);
+        setError('Unable to load this skincare article. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadArticle();
+  }, [name]);
+
+  if (loading) {
+    return (
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <section className="rounded-3xl border-2 border-neutral-900 bg-white px-5 py-8 sm:px-8 sm:py-10">
+          <div className="mx-auto max-w-3xl">
+            <p className="text-sm text-neutral-600">Loading skincare article...</p>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <section className="rounded-3xl border-2 border-neutral-900 bg-white px-5 py-8 sm:px-8 sm:py-10">
+          <div className="mx-auto max-w-3xl">
+            <h1 className="text-3xl font-bold text-neutral-900">
+              Article unavailable
+            </h1>
+            <p className="mt-3 text-sm text-neutral-600">{error}</p>
+            <Button to="/articles" className="mt-6">
+              Back to Articles
+            </Button>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   if (!article) {
     return (

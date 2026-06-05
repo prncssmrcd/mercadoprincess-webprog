@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Box,
@@ -23,9 +23,15 @@ import {
   Typography,
 } from '@mui/material';
 import {
+  createUser,
+  deleteUser as deactivateUser,
+  fetchUsers,
+  updateUser,
+} from '../../services/UserService.js';
+import {
   genders,
   labelize,
-  loadUsers,
+  loadUsers as loadSeedUsers,
   roles,
   statuses,
   userMatchesFilters,
@@ -38,9 +44,33 @@ const blankForm = {
   contactNumber: '',
   email: '',
   username: '',
-  role: 'viewer',
+  role: 'user',
   gender: 'female',
   isActive: true,
+};
+
+const normalizeUser = (user, index) => ({
+  id: user._id || user.id || String(index + 1),
+  _id: user._id || user.id || String(index + 1),
+  firstName: String(user.firstName ?? '').trim(),
+  lastName: String(user.lastName ?? '').trim(),
+  age: String(user.age ?? '').trim(),
+  contactNumber: String(user.contactNumber ?? '').trim(),
+  email: String(user.email ?? '').trim().toLowerCase(),
+  username: String(user.username ?? '').trim().toLowerCase(),
+  role: roles.includes(String(user.role ?? user.type ?? '').trim().toLowerCase())
+    ? String(user.role ?? user.type).trim().toLowerCase()
+    : 'user',
+  gender: genders.includes(String(user.gender ?? '').trim().toLowerCase())
+    ? String(user.gender ?? '').trim().toLowerCase()
+    : 'female',
+  isActive: typeof user.isActive === 'boolean' ? user.isActive : true,
+});
+
+const getUsersList = (data) => {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.users)) return data.users;
+  return [];
 };
 
 const controlSx = {
@@ -52,7 +82,7 @@ const controlSx = {
 };
 
 function UsersPage() {
-  const [users, setUsers] = useState(loadUsers());
+  const [users, setUsers] = useState(loadSeedUsers());
   const [filters, setFilters] = useState({
     search: '',
     role: '',
@@ -63,6 +93,26 @@ function UsersPage() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(blankForm);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const loadUsers = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const { data } = await fetchUsers();
+      const nextUsers = getUsersList(data).map(normalizeUser);
+      setUsers(nextUsers);
+    } catch (loadError) {
+      console.error('Error loading customers:', loadError);
+      setError('Unable to load customers. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
   const filteredUsers = useMemo(
     () => users.filter((user) => userMatchesFilters(user, filters)),
@@ -104,33 +154,48 @@ function UsersPage() {
     setError('');
   };
 
-  const saveUser = () => {
+  const saveUser = async () => {
     if (!form.firstName?.trim() || !form.email?.trim() || !form.username?.trim()) {
       setError('First name, email, and username are required.');
       return;
     }
 
-    if (editingId) {
-      const userIndex = users.findIndex((u) => u.id === editingId);
-      if (userIndex >= 0) {
-        const updated = [...users];
-        updated[userIndex] = { ...updated[userIndex], ...form };
-        setUsers(updated);
+    try {
+      setLoading(true);
+      setError('');
+
+      if (editingId) {
+        await updateUser(editingId, form);
+      } else {
+        await createUser({
+          ...form,
+          password: 'DefaultPass123!',
+        });
       }
-    } else {
-      const newUser = {
-        id: Math.max(...users.map((u) => u.id), 0) + 1,
-        ...form,
-        password: 'DefaultPass123!',
-      };
-      setUsers([...users, newUser]);
+
+      await loadUsers();
+      closeDialog();
+    } catch (saveError) {
+      console.error('Error saving customer:', saveError);
+      setError(saveError.message || 'Unable to save customer. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    closeDialog();
   };
 
-  const deleteUser = (id) => {
+  const deleteUser = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
-      setUsers(users.filter((u) => u.id !== id));
+      try {
+        setLoading(true);
+        setError('');
+        await deactivateUser(id);
+        await loadUsers();
+      } catch (deleteError) {
+        console.error('Error deleting customer:', deleteError);
+        setError(deleteError.message || 'Unable to delete customer. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -144,6 +209,8 @@ function UsersPage() {
           Review Mercado Princess users and account activity.
         </Typography>
       </Box>
+
+      {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
       <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} mb={4}>
         <TextField
@@ -160,19 +227,19 @@ function UsersPage() {
           }}
           sx={controlSx}
         />
-        <TextField select value={filters.role} onChange={updateFilter('role')} fullWidth sx={controlSx} displayEmpty>
+        <TextField select value={filters.role} onChange={updateFilter('role')} fullWidth sx={controlSx} SelectProps={{ displayEmpty: true }}>
           <MenuItem value="">Role</MenuItem>
           {roles.map((role) => (
             <MenuItem key={role} value={role}>{labelize(role)}</MenuItem>
           ))}
         </TextField>
-        <TextField select value={filters.gender} onChange={updateFilter('gender')} fullWidth sx={controlSx} displayEmpty>
+        <TextField select value={filters.gender} onChange={updateFilter('gender')} fullWidth sx={controlSx} SelectProps={{ displayEmpty: true }}>
           <MenuItem value="">Gender</MenuItem>
           {genders.map((gender) => (
             <MenuItem key={gender} value={gender}>{labelize(gender)}</MenuItem>
           ))}
         </TextField>
-        <TextField select value={filters.status} onChange={updateFilter('status')} fullWidth sx={controlSx} displayEmpty>
+        <TextField select value={filters.status} onChange={updateFilter('status')} fullWidth sx={controlSx} SelectProps={{ displayEmpty: true }}>
           <MenuItem value="">Status</MenuItem>
           {statuses.map((status) => (
             <MenuItem key={status} value={status}>{labelize(status)}</MenuItem>
@@ -182,6 +249,7 @@ function UsersPage() {
           variant="contained"
           startIcon={<span aria-hidden="true">+</span>}
           onClick={openAddDialog}
+          disabled={loading}
           sx={{ backgroundColor: '#826a5f', '&:hover': { backgroundColor: '#6b5548' } }}
         >
           Add User
@@ -303,7 +371,7 @@ function UsersPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={closeDialog}>Cancel</Button>
-          <Button onClick={saveUser} variant="contained" sx={{ backgroundColor: '#826a5f' }}>
+          <Button onClick={saveUser} disabled={loading} variant="contained" sx={{ backgroundColor: '#826a5f' }}>
             {editingId ? 'Update' : 'Create'}
           </Button>
         </DialogActions>
