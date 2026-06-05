@@ -69,7 +69,7 @@ const LoginPage = () => {
             htmlFor="signin-email"
             className="text-sm font-medium text-neutral-800"
           >
-            Email Address
+            Email Address here
           </label>
           <input
             id="signin-email"
