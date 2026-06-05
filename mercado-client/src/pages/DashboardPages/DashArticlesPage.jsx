@@ -48,6 +48,8 @@ const truncate = (text, max) => {
 function DashArticlesPage() {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  
+  // Mercado Princess Dashboard - Articles Management
 
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
